@@ -100,10 +100,10 @@ public class MainActivity extends AppCompatActivity {
         try
         {
             if(novaTarefa.equals("")){
-                Toast.makeText(MainActivity.this, "Insira uma tarefa!", Toast.LENGTH_SHORT).show();
+                Toast.makeText(MainActivity.this, "Type in a Task!", Toast.LENGTH_SHORT).show();
             }
             else{
-                Toast.makeText(MainActivity.this, "Tarefa inserida!", Toast.LENGTH_SHORT).show();
+                Toast.makeText(MainActivity.this, "Task Added!", Toast.LENGTH_SHORT).show();
                 editText.setText("");
                 bancoDados.execSQL("INSERT INTO minhasTarefas(tarefa) VALUES('" + novaTarefa + "')");
                 carregaTarefas();
@@ -119,7 +119,7 @@ public class MainActivity extends AppCompatActivity {
             {
                 bancoDados.execSQL("DELETE FROM minhasTarefas WHERE id = " + id);
                 carregaTarefas();
-                Toast.makeText(MainActivity.this, "Tarefa removida!", Toast.LENGTH_SHORT).show();
+                Toast.makeText(MainActivity.this, "Task Removed!", Toast.LENGTH_SHORT).show();
             }
             catch (Exception e)
             {
@@ -130,13 +130,13 @@ public class MainActivity extends AppCompatActivity {
         String tarefaSelecionada = itens.get(idSelecionado);
         Integer numeroID = idSelecionado;
 
-        new AlertDialog.Builder(MainActivity.this).setTitle("Aviso!")
-                .setMessage("Deseja apagar a tarefa selecionada?")
-                .setPositiveButton("Sim", new DialogInterface.OnClickListener() {
+        new AlertDialog.Builder(MainActivity.this).setTitle("Warning!")
+                .setMessage("Do you wish to delete this task?")
+                .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialogInterface, int i) {
                         apagarTarefa(iDS.get(numeroID));
                     }
-                }).setNegativeButton("Não", null).show();
+                }).setNegativeButton("No", null).show();
     }
 }
